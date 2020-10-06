@@ -1,0 +1,37 @@
+---
+title: 'R Lab: Longitudinal Models'
+subtitle: "STAT 340: Applied Regression"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(lme4)
+library(ggplot2)
+
+chart_wide_condense <- read.csv("https://raw.githubusercontent.com/proback/BeyondMLR/master/data/chart_wide_condense.csv")
+```
+
+# Charter Schools
+
+Charter schools first appeared in the United States in 1991 in Minnesota, and have spread across the country in the years since. Unlike public schools, charter schools are not obliged to follow many state guidelines, which allows them to extend the school day, and offer non-traditional techniques and styles of instruction and learning. 
+
+The KIPP (Knowledge is Power Program) Stand Academy in Minneapolis, MN is an example of a charter school, which stresses longer days and partnerships with parents. Purportedly, 80% of KIPP students go on to college from a population where 87% qualify for free and reduced lunch and 95% are African-American or Latino (KIPP 2018). This suggests that the unique structure of charter schools might improve student outcomes, relative to public schools, in general, but how to do we know for sure? 
+
+Because charter schools are relatively new in the United States, data has just begun to be collected to evaluate the performance of charter versus non-charter schools and some of the factors that influence a school’s performance. We will examine data collected by the Minnesota Department of Education for all Minnesota schools during the years 2008-2010.
+
+The variables are:
+
+- `schoolid`: includes district type, district number, and school number
+- `schoolName`: name of school
+- `urban`: is the school in an urban (1) or rural (0) location?
+- `charter`: is the school a charter school (1) or a non-charter public school (0)?
+- `schPctnonw`: proportion of non-white students in a school (based on 2010 figures)
+- `schPctsped`: proportion of special education students in a school (based on 2010 figures)
+- `schPctfree`: proportion of students who receive free or reduced lunches in a school (based on 2010 figures). This serves as a measure of poverty among school families.
+- `MathAvgScore.0`: average MCA-II math score for all sixth grade students in a school in 2008
+- `MathAvgScore.1`: average MCA-II math score for all sixth grade students in a school in 2009
+- `MathAvgScore.2`: average MCA-II math score for all sixth grade students in a school in 2010
+
+#### We are primarily interested in determining whether charter school designation makes a significant difference in average math score. However, we want to make sure to control for other important covariates in our model, such as poverty level, for example. Find a reasonable final model for these data. Be sure to consider the assumptions behind the linear mixed effects model, particularly the linearity as a function of time. Defend your model choice using problem context and appropriate model selection criteria.
